@@ -1,1 +1,1 @@
-{ "recentStocks":[],"Urls":[]}
+{"recentStocks":[{"name":"Apple Inc.","symbol":"AAPL"},{"name":"Summer Infant, Inc.","symbol":"SUMR"},{"name":"LendingTree, Inc.","symbol":"TREE"}],"Urls":["http://www.finance.yahoo.com/q?s=[SYMBOL]","http://www.marketwatch.com/investing/stock/[SYMBOL]","http://seekingalpha.com/symbol/[SYMBOL]"]}

@@ -4,8 +4,9 @@
 	height: 90%;
 }
 
-body {
-    overflow: auto;
+html, body { height: 100%; 
+background: #4C4C4C;
+
 }
 
 
@@ -17,7 +18,17 @@ body {
     animation: opac_in 0.5s  forwards;
     
  }
- 
+
+
+
+ #recentStockWrapper
+ {
+  width: 30px;
+  left:25%;
+  
+  height: 100%;
+ }
+
 @-webkit-keyframes opac_in {
   from { opacity: 0; left: 40px; }
   to   { opacity: 1; left: 0px; }
@@ -35,17 +46,21 @@ body {
   to   { opacity: 1; left: 0px; }
 }
 
+
 iframe{
-    width: 100%;
-    height: 100%;
+  top: -0px;
+  position: relative;
+  display: inline;
+  height: calc(100% - 10px);
+  width: calc(100% - 20px);
     /*width: auto;*/
 }
 .sticky-right
 {
     position: absolute;
-    right: 10px;
+    right: 20px;
     top:60px;
-    width: 73%;
+    width: 78%;
     height: 85%;
 }
 
@@ -58,32 +73,32 @@ iframe{
 #Control_Back
 {
   position: absolute;
-  top:50%;
+  bottom:10px;
   width: 50px;
   height: 50px;
+  left:21%;
   background: #3C3C3C;
   border-radius: 5px;
-  opacity: .8;
+  opacity: 1;
 }
 #Control_Forw
 {
   position: absolute;
-  top:50%;
+  bottom:10px;
   right: 20px;
   width: 50px;
   height: 50px;
   background: #3C3C3C;
   border-radius: 5px;
-  opacity: .8;
+  opacity: 1;
 }
 #recentStocks
 {
   position: absolute;
-  width: 26%;
-  left: -18px;
+  width: 20%;
+  left: 20px;
   list-style-type: none;
   overflow: auto;
-  background: #333333;
   list-style-position: inside;
 }
 #recentStocks li:nth-child(even)
@@ -102,19 +117,15 @@ iframe{
 }
 .pageView
 {
-  opacity: 0;
-      -webkit-animation: slid_in 1.5s  backwards;
-    -o-animation: slid_in 1.5s  backwards;
-    -moz-animation: slid_in 1.5s  backwards;
-    animation: slid_in 1.5s  backwards;
+  position: absolute;
+  display: inline;
+  visibility: hidden;
 }
 .pageView.pageViewVisible
 {
-     -webkit-animation: slid_in 1.5s  forwards;
-    -o-animation: slid_in 1.5s  forwards;
-    -moz-animation: slid_in 1.5s  forwards;
-    animation: slid_in 1.5s  forwards; 
-  opacity: 1;
+  
+  visibility: visible;
+  /*height: 600px;*/
 }
 
 @-webkit-keyframes slid_in {
