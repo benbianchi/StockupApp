@@ -57,7 +57,7 @@ $( document ).ready(function() {		//Get Ready to run!
 				if (fs.readFileSync("Stocks.json","utf8").indexOf(name) == -1)
 				{
 				stocks['recentStocks'].push(obj);
-				fs.writeFileSync("Stocks.json",JSON.stringify(stocks),"utf8");
+				fs.writeFileSync("Stocks.json",JSON.stringify(stocks,undefined,'\t\t'),"utf8");
 				$("#recentStocks").append('<li class="new-item" >'+obj.symbol+'</li>')	
 			}
 		}
@@ -68,13 +68,13 @@ $( document ).ready(function() {		//Get Ready to run!
 	$('#iconlist #Add_url').click(function(event) {
 		//add a particular url, create new input and Iframe.
 
-		$('#urllist').append('<div class="row"><div class="medium-3 columns" id="input">URL:</div><div class="medium-8 columns"><input id="urlInput" type="text"></div><div class="medium-1 columns"><i class="fa fa-close"></i></div></div>')
+		$('#urllist').append('<div class="row"><div class="medium-3 columns" id="input">URL:</div><div class="medium-8 columns"><input id="urlInput" type="text" value=""></div><div class="medium-1 columns"><i class="fa fa-close"></i></div></div>')
 		$('.iList').append('<iframe height="100%" src="'+stocks.Urls[stocks.Urls.length-1]+'" frameborder="0" class="pageView pageViewVisible" id="if_'+stocks.Urls.length+'"></iframe> ')	
 	})
 	$('#iconlist #save_url').click(function(event) {
 		//Save all new and changed inputs
 		var l=[];
-		var stocks 	=  JSON.parse(	fs.readFileSync(conf,'utf8') );
+		var stocks 	=  JSON.parse(	fs.readFileSync('Stocks.json','utf8') );
 		for (var i =0; i< $("#urllist input").length; i++) {
 			console.log($("#urllist #urlInput")[i].value)
 			l.push($("#urllist #urlInput")[i].value );
@@ -87,8 +87,13 @@ $( document ).ready(function() {		//Get Ready to run!
 
 		stocks.Urls = l;
 		//save the information	
-		fs.writeFileSync("Stocks.json",JSON.stringify(stocks),"utf8");
+		fs.writeFileSync("Stocks.json",JSON.stringify(stocks,undefined,'\t\t'),"utf8");
 	});
+
+	$('.medium-1.columns .fa-close').click(function(event) {
+	    event.preventDefault();
+        $(this).parent('div').parent('div').remove();
+});
 
 	$("#Control_Back").click(function(event){
 		//On button click, we will switch the iframe. We are also handling if the new index is less than 0 or greater than the amount of tabs we have.
@@ -114,7 +119,7 @@ function getURL (url) {
 
 	//Lazy way to lookup urls, and swap out the correct information.
 		stocks = JSON.parse( fs.readFileSync("Stocks.json",'utf8') )
-		console.log(JSON.stringify(stocks.recentStocks) )
+		console.log(JSON.stringify(stocks.recentStocks,undefined,'\t\t') )
 		console.log(selectedStockIndex)
 		url = url.split("[SYMBOL]").join(stocks.recentStocks[selectedStockIndex].symbol)
 		url = url.split("[NAME]").join(stocks.recentStocks[selectedStockIndex].name)
