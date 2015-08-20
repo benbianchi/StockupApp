@@ -4,7 +4,7 @@
 // Global Styles
 
 body {
-    background-color: @gray-lightest;
+    background-color: @brand-dark;
 }
 
 // Wrappers
@@ -24,7 +24,7 @@ body {
         position: inherit;
         margin: 0 0 0 250px;
         padding: 0 30px;
-        border-left: 1px solid darken(@gray-lightest, 6.5%);
+        border-left: 1px solid @brand-dark-accent;
     }
 }
 
@@ -33,6 +33,7 @@ body {
 // --Topbar
 
 .navbar-top-links {
+    
   padding-left: 0;
   margin: 0 auto;
   list-style: none;
@@ -108,13 +109,17 @@ body {
 
 .sidebar .sidebar-search {
     padding: 15px;
+    
 }
 
 .sidebar ul li {
-    border-bottom: 1px solid darken(@gray-lightest, 6.5%);
+    border-bottom: 1px solid @brand-dark-accent;
     a {
+    
         &.active {
-            background-color: @gray-lighter;
+            background-color: @brand-primary;
+            color: @brand-dark;
+
         }
     }
 }
@@ -385,3 +390,125 @@ table.dataTable thead .sorting:after {
     color: @brand-primary;
 }
 
+/* latin-ext */
+@font-face {
+  font-family: 'Lily Script One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lily Script One'), local('LilyScriptOne-Regular'), url(http://fonts.gstatic.com/s/lilyscriptone/lilyscript.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Lily Script One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lily Script One'), local('LilyScriptOne-Regular'), url(http://fonts.gstatic.com/s/lilyscriptone/lilyscript.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+#ProductTitle
+ {
+    width:100%;
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+    padding-bottom: 10px;
+    background: @brand-dark;
+    position: absolute;
+  a{
+    font-family: 'Lily Script One', cursive;
+  font-size: 30px;
+  color: @brand-primary;
+    }
+}
+
+
+
+.navbar-default
+{
+
+    background-color: @brand-dark;
+    border-bottom-color:@brand-dark-accent;
+}
+
+#side-menu li div input.form-control
+{
+    background: @brand-dark-accent;
+    border-color: @brand-primary;
+    color: @brand-primary;
+}
+
+
+#side-menu li div span button.btn.btn-default
+{
+    background: @brand-dark;
+    color: @brand-primary;
+    border-color: @brand-primary;
+}
+
+
+a
+{
+    color:@brand-info;
+}
+
+.MH-iframe{
+height: 100%;
+visibility: visible;
+}
+
+.MH-iframe.MH-iframe-hidden
+{
+    visibility: hidden;
+    display: none;
+}
+
+.command-panel
+{
+    color: @brand-info;
+
+}
+
+#iframe-wrapper
+{
+    height: 100%;
+}
+.window-controls{
+  position: fixed;
+  text-align: center;
+  z-index: 1001;
+  right: 0px;
+  top: 5px;
+    i{
+
+        font-size: 30px;
+        padding-right: 15px;
+        color: @brand-primary;
+    }
+    i:hover
+    {
+        color: @brand-warning;
+    }
+}
+.navbar-toggle
+{
+    margin-top:10px;
+}
+
+.navbar.center .navbar-inner {
+    text-align: center;
+}
+.navbar.center .navbar-inner .nav {
+    float: none;
+    display:inline-block;
+    vertical-align: top;  
+}
+
+button.navbar-toggle{
+    margin-right: 140px;
+}
+
+.sidebar-nav.navbar-collapse.in.collapse
+{
+    margin-top: 90px;
+}

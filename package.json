@@ -1,24 +1,17 @@
 {
-	"name": "Stock-Up",
-	"main": "index.html",
-	"chromium-args" : "--enable-threaded-compositing",
-	"webkit": 
-		{
-		"plugin": true
-		},
-		"toolbar":false,
-	"window": 
-		{
-	    "title": "node-webkit demo",
-	    "icon": "link.png",
-	    "toolbar": false,
-	    "frame": true,
-	    "width": 1400,
-	    "height": 900,
-	    "position": "mouse",
-	    "min_width": 400,
-	    "min_height": 700,
-	    "max_width": 1400,
-	    "max_height": 1080
-		}
+  "main": "index.html",
+  "name": "Market Hound",
+  "description": "A fast Stock browser",
+  "version": "0.1.0",
+  "keywords": [ "demo", "node-webkit" ],
+  "window": {
+    "title": "Market Hound",
+    "icon": "link.png",
+    "toolbar": true,
+    "frame": false,
+    "position": "mouse"
+  },
+  "webkit": {
+    "plugin": true
+  }
 }

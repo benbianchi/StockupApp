@@ -29,6 +29,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <span class="window-controls">
+    <i id="minimize" class="fa fa-minus"></i>
+    <i id="maximize" class="fa fa-plus"></i>
+    <i id="close" class="fa fa-close"></i>
+    </span>
+
 
 </head>
 
@@ -38,7 +44,7 @@
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
+            <div class="navbar-header" id="ProductTitle">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -49,27 +55,7 @@
             </div>
             
             
-            <ul class="nav navbar-top-links navbar-centered">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-arrow-left fa-fw"></i>  
-                    </a>
-                    
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
-                
-                <!-- /.dropdown -->
-                
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-arrow-right fa-fw"></i>  
-                    </a>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
+
             
             <!-- /.navbar-header -->
 
@@ -115,11 +101,24 @@
             
             <div class="container-fluid">
                 <div class="row">
-                    <h1 class=panel-header>Dashboard</h1>
+                <div class="command-panel text-center">
+                <a href="#"><i class="fa fa-arrow-left fa-fw"></i></a>
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Stock Selection <span class="caret"></span></a>
+                    <ul class="dropdown-menu" >
+                        <!-- Populate Stocks in Here. -->
+                        <li class="divider" id="Fast_Stock_Switch" ></li>
+                        <li><a href="#">Add New Stock</a></li>
+                    </ul>
+                </div>
+                <a href="#"><i class="fa fa-arrow-right fa-fw"></i></a>
+                </div>
+
                     <div class="col-lg-12">
                                             <div class="panel panel-default">
-                        <div class="panel-body">
-                        <iframe  class="col-xs-12" src="http://www.google.com"></iframe>
+                        <div class="panel-body" id="iframe-wrapper">
+
+                        
                                                 </div>
                         </div>
                     </div>
@@ -128,8 +127,12 @@
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
+
+
         </div>
         <!-- /#page-wrapper -->
+
+
 
     </div>
     <!-- /#wrapper -->
@@ -145,6 +148,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/Dashboard.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lily+Script+One' rel='stylesheet' type='text/css'>
 
 </body>
 
