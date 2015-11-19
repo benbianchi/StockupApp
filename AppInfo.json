@@ -1,4 +1,1 @@
-{"anonymous_statistics":false, 
-"activeSiteIndex":0,
-"activeStockIndex":0,
-"saved_stocks":[{"name":"1Unconfigured","symbol":"1undefined"},{"name":"Unconfigured","symbol":"undefined"},{"name":"3Unconfigured","symbol":"3undefined"},{"name":"Unconfigured","symbol":"undefined"},{"name":"5Unconfigured","symbol":"5undefined"}],"sites":[{"URL":"YO GOT ANOTHER THING"},{"URL":"Wait for it [name]"},{"URL":"kiasdmka"},{"URL":"COMING"}]}
+{"anonymous_statistics":false,"activeSiteIndex":0,"activeStockIndex":0,"saved_stocks":[{"name":"Unconfigured","symbol":"undefined"},{"name":"3Unconfigured","symbol":"3undefined"},{"name":"Unconfigured","symbol":"undefined"},{"name":"5Unconfigured","symbol":"5undefined"}],"sites":[{"URL":"http://money.cnn.com/quote/quote.html?symb=[symbol]"},{"URL":"khttp://www.reuters.com/finance/stocks/overview?symbol=[symbol]"},{"URL":"http://data.cnbc.com/quotes/[symbol]"},{"URL":"COMING"}]}

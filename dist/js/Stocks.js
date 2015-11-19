@@ -23,6 +23,10 @@ $(document).ready(function() {
 
 
 	$('#model_StockTable').on('dblclick', "td",function(event) {
+
+		if ($(this).hasClass('COMMAND'))
+			return;
+
 		var cell = $(this);
 		var row = $(this).parent('');
 		console.log(row);
@@ -33,46 +37,51 @@ $(document).ready(function() {
 		$(this).children('').focus();
 		$(this).children('').focusout(function(event) {
 			dirty = true;
-		var index = ( $("tr.model_StockTable_Cell").index(row) );
-		console.log(index)
-		console.log(cell.children('').first().val())
-		console.log(cell.children('').siblings('').last().val())
-		$(this).replaceWith($(this).val());
+			var index = ( $("tr.model_StockTable_Cell").index(row) );
+			console.log(index)
+			console.log(cell.children('').first().val())
+			console.log(cell.children('').siblings('').last().val())
+			$(this).replaceWith($(this).val());
 
 			/* Act on the event */
 		});
 	});
+	$('tr').hover(function() {
+		$(this).children("td:last-child").children('.delete').css({ 'color': 'red'});
+	}, function() {
+		$(this).children("td:last-child").children('.delete').css({ 'color': 'white'});
+	});
 
-	$('td').on('blur',"input",function(event) {
-		
-
-
+$('tr td .delete').click(function() {
+	dirty = true;
+	
+		$(this).parent('').parent('').remove();
 	});
 
 	$('a').click(function(event) {
 		var href = $(this).attr('href');
 		if (dirty)
 		{
-		event.preventDefault();
+			event.preventDefault();
 			MHAlert(unsaved_changes_title,unsaved_changes_message,
-			"Save","Cancel",
-			function () {
-				var out = JSON.parse(fs.readFileSync(ConfigPath,"utf8") );
-				stocks  = [];
+				"Save","Continue Without Saving",
+				function () {
+					var out = JSON.parse(fs.readFileSync(ConfigPath,"utf8") );
+					stocks  = [];
 
-				for (var i = 0; i < $('tr.model_StockTable_Entry').length; i++) {
-					console.log($('tr.model_StockTable_Entry')[i]);
-					
+					for (var i = 0; i < $('tr.model_StockTable_Entry').length; i++) {
+						console.log($('tr.model_StockTable_Entry')[i]);
 
-					stocks[i] = JSON.parse ( '{ "name":"'+$('tr.model_StockTable_Entry')[i].children[0].innerHTML+'","symbol":"'+$('tr.model_StockTable_Entry')[i].children[1].innerHTML+'"	}' )
-				};
-				out.saved_stocks = stocks;
-				fs.writeFileSync(ConfigPath,JSON.stringify(out)	);
-				window.location = href;
-			},
-			function () {
-				window.location = href;	
-			});
+
+						stocks[i] = JSON.parse ( '{ "name":"'+$('tr.model_StockTable_Entry')[i].children[0].innerHTML+'","symbol":"'+$('tr.model_StockTable_Entry')[i].children[1].innerHTML+'"	}' )
+					};
+					out.saved_stocks = stocks;
+					fs.writeFileSync(ConfigPath,JSON.stringify(out)	);
+					window.location = href;
+				},
+				function () {
+					window.location = href;	
+				});
 		}
 	});
 });
@@ -82,13 +91,15 @@ $(document).ready(function() {
 /**
  * Load Stocks from a file hosted in the local file tree.
  */
-function LoadStocks () {
-	var fs = require('fs');
+ function LoadStocks () {
+ 	var fs = require('fs');
 
-	var file = JSON.parse(fs.readFileSync("AppInfo.json",'utf8') );
-	stocks = file.saved_stocks;	
+ 	var file = JSON.parse(fs.readFileSync("AppInfo.json",'utf8') );
+ 	stocks = file.saved_stocks;	
 
-	for (var i =0 ; i < file.saved_stocks.length ; i++) {
-		$('#model_StockTable').append('<tr class="model_StockTable_Entry"><td class="model_StockTable_Name">'+file.saved_stocks[i].name+'</td><td>'+file.saved_stocks[i].symbol+'</td></tr>')
-	};
-}
+ 	for (var i =0 ; i < file.saved_stocks.length ; i++) {
+ 		$('#model_StockTable').append('<tr class="model_StockTable_Entry"><td class="model_StockTable_Name">'+file.saved_stocks[i].name+'</td><td>'+file.saved_stocks[i].symbol+'</td><td class="COMMAND"><i id="'+i+'" class="delete fa fa-close"></i></td></tr>')
+ 	};
+ }
+
+

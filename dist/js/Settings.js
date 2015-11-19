@@ -40,7 +40,7 @@ $(document).ready(function() {
 		{
 		event.preventDefault();
 			MHAlert(unsaved_changes_title,unsaved_changes_message,
-			"Save","Cancel",
+			"Save","Continue Without Saving",
 			function () {
 				var out = JSON.parse(fs.readFileSync(ConfigPath,"utf8") );
 				sites  = [];
