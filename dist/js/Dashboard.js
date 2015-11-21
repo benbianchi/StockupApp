@@ -1,6 +1,8 @@
 var appInfo;
 var ConfigPath = "AppInfo.json";
 var fs = require("fs");
+var activeIframeID = 0;
+
 $(document).ready(function() {
 
 		var nheight =$("#page-wrapper").height();
@@ -9,11 +11,11 @@ $(document).ready(function() {
 		console.log($("#page-wrapper"))
 
 	var iqueue = [];
-	var fs = require('fs');	
-	var appInfo =JSON.parse ( fs.readFileSync(ConfigPath,"utf8") );
+	
+	var appInfo =JSON.parse( fs.readFileSync(ConfigPath,"utf8") );
 	
 	loadStocks(appInfo);
-	loadIframes(appInfo.sites,0)
+	loadIframes(appInfo.sites,0);
 
 	$(window).resize(function(event) {
 		var nheight =$("#page-wrapper").height();
@@ -31,6 +33,15 @@ $(document).ready(function() {
 			window.location = "../pages/search.html#"+$("#search-input").val();
 	});
 
+	$('#Dashboard-List li a').click(function(event) {
+		console.log($('#iframe-wrapper #stockframe-'+activeIframeID));		
+		$('#iframe-wrapper #stockframe-'+activeIframeID).toggleClass('MH-iframe-hidden');
+		console.log(activeIframeID+" vs "+ $(this).attr('index'));
+		activeIframeID = $(this).attr('index');
+		$('#iframe-wrapper #stockframe-'+activeIframeID).toggleClass('MH-iframe-hidden');
+
+	});
+
 
 });
 
@@ -45,9 +56,9 @@ function loadStocks (appInfo) {
 		appInfo =JSON.parse ( fs.readFileSync(ConfigPath,"utf8") );
 	for (var i = 0; i < appInfo.saved_stocks.length; i++) {
 		if (i == appInfo.activeStockIndex)
-			$('#Fast_Stock_Switch').before('<li class="active"><a href="#">'+appInfo.saved_stocks[i].name+'</a></li>');
+			$('#Dashboard-List').append('<li class="active"><a index="'+i+'" symbol="'+appInfo.saved_stocks[i].symbol+'" name="'+appInfo.saved_stocks[i].name+'"  href="#">'+appInfo.saved_stocks[i].name+'</a></li>');
 		else
-			$('#Fast_Stock_Switch').before('<li><a href="#">'+appInfo.saved_stocks[i].name+'</a></li>');
+			$('#Dashboard-List').append('<li><a index="'+i+'" symbol="'+appInfo.saved_stocks[i].symbol+'" name="'+appInfo.saved_stocks[i].name+'"  href="#">'+appInfo.saved_stocks[i].name+'</a></li>');
 	};
 
 }
