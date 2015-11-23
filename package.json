@@ -2,13 +2,13 @@
   "main": "index.html",
   "name": "Market Hound",
   "description": "A fast Stock browser",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "keywords": [ "demo", "node-webkit" ],
   "window": {
     "title": "Market Hound",
     "icon": "link.png",
     "toolbar": true,
-    "frame": false,
+    "frame": true,
     "position": "mouse"
   },
   "webkit": {

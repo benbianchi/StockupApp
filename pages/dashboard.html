@@ -29,13 +29,13 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <span class="window-controls">
-    <i id="minimize" class="fa fa-minus"></i>
-    <i id="maximize" class="fa fa-plus"></i>
+    <!-- <span class="window-controls"> -->
+<!--     <span id="minimize"> <i class="fa fa-minus"></i></span>
+    <span id="maximize"> <i class="fa fa-plus"></i></span>
     <i id="fullscreen" class="glyphicon glyphicon-fullscreen"></i>
-    <i id="close" class="fa fa-close"></i>
+    <span id="close"> <i class="fa fa-close"></i></span>
     </span>
-
+ -->
 
 </head>
 
@@ -67,19 +67,19 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-<!--                             <div class="input-group custom-search-form">
+   <!--                      <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" id="search-input" placeholder="Online Search...">
                                 <span class="input-group-btn"  id="Search_Emblem">
                                     <button class="btn btn-default" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
-                            </div> -->
-                            <!-- /input-group -->
-                        </li>
+                            </div>
+                            
+                        </li> -->
                         <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#Dashboard" class="" aria-expanded="true"><i class="fa fa-fw fa-arrows-v"></i>Dashboard<i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#Dashboard" class="active" aria-expanded="true"><i class="fa fa-fw fa-arrows-v"></i>Dashboard<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="Dashboard-List" class="collapse in" aria-expanded="true">
                         </ul>
                     </li>
@@ -139,6 +139,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
     <script src="../dist/js/Dashboard.js"></script>
+    <script src="../dist/js/Window-Controls.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Lily+Script+One' rel='stylesheet' type='text/css'>
 
 </body>

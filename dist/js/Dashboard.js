@@ -1,3 +1,8 @@
+// Dashboard.js
+// @author: Ben Bianchi
+
+// The purpose of this script is to correctly handle and populate the Dashboard.html page.
+
 var appInfo;
 var ConfigPath = "AppInfo.json";
 var fs = require("fs");
@@ -5,8 +10,11 @@ var activeIframeID = 0;
 
 $(document).ready(function() {
 
+
 		var nheight =$("#page-wrapper").height();
 		$(".panel-body#iframe-wrapper").height(nheight);
+
+
 		console.log(nheight);
 		console.log($("#page-wrapper"))
 
@@ -17,28 +25,28 @@ $(document).ready(function() {
 	loadStocks(appInfo);
 	loadIframes(appInfo.sites,0);
 
+	//Resize the main page for maximum real estate. Fires on window resize.
 	$(window).resize(function(event) {
 		var nheight =$("#page-wrapper").height();
 		$(".panel-body#iframe-wrapper").height(nheight);
-		// console.log(nheight);
-		// console.log($("#page-wrapper"))
 	});
 
+	//Resize the main page for maximum real estate. Fires on window load (after Iframes).
+	$(window).load(function(event) {
+		var nheight =$("#page-wrapper").height();
+		$(".panel-body#iframe-wrapper").height(nheight);
 
-	$("#Search_Emblem").click(function(event) {
-		console.log($("#search-input").text());
-		if ($("#search-input").val() == "")
-			return;
-		else
-			window.location = "../pages/search.html#"+$("#search-input").val();
 	});
 
+	//When a user clicks a new stock, populate the iframes correctly with new info.
 	$('#Dashboard-List li a').click(function(event) {
 		console.log($('#iframe-wrapper #stockframe-'+activeIframeID));		
 		$('#iframe-wrapper #stockframe-'+activeIframeID).toggleClass('MH-iframe-hidden');
 		console.log(activeIframeID+" vs "+ $(this).attr('index'));
 		activeIframeID = $(this).attr('index');
 		$('#iframe-wrapper #stockframe-'+activeIframeID).toggleClass('MH-iframe-hidden');
+				var nheight =$("#page-wrapper").height();
+		$(".panel-body#iframe-wrapper").height(nheight);
 
 	});
 

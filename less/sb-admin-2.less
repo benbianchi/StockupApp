@@ -33,7 +33,7 @@ body {
 // --Topbar
 
 .navbar-top-links {
-    
+
   padding-left: 0;
   margin: 0 auto;
   list-style: none;
@@ -113,14 +113,18 @@ body {
 }
 
 .sidebar ul li {
-    border-bottom: 1px solid @brand-dark-accent;
-    a {
     
+    a {
+
         &.active {
             background-color: @brand-primary;
             color: @brand-dark;
 
         }
+    }
+    a.active
+    {
+        background: @brand-primary;
     }
 }
 
@@ -408,17 +412,17 @@ table.dataTable thead .sorting:after {
 }
 
 #ProductTitle
- {
+{
     width:100%;
     -webkit-app-region: drag;
     -webkit-user-select: none;
     padding-bottom: 10px;
     background: @brand-dark;
     position: absolute;
-  a{
-    font-family: 'Lily Script One', cursive;
-  font-size: 30px;
-  color: @brand-primary;
+    a{
+        font-family: 'Lily Script One', cursive;
+        font-size: 30px;
+        color: @brand-primary;
     }
 }
 
@@ -446,6 +450,11 @@ table.dataTable thead .sorting:after {
     border-color: @brand-primary;
 }
 
+#side-menu li a:hover{
+    background-color:@brand-dark-accent;
+    color:white;
+}
+
 
 a
 {
@@ -453,8 +462,8 @@ a
 }
 
 .MH-iframe{
-height: 100%;
-visibility: visible;
+    height: 100%;
+    visibility: visible;
 }
 
 .MH-iframe.MH-iframe-hidden
@@ -473,27 +482,27 @@ visibility: visible;
 {
     height: 100%;
 }
-.window-controls{
+.window-controls
+{
   position: fixed;
-  text-align: center;
-  z-index: 1001;
+  display: inline;
+  z-index: 2000;
   right: 0px;
   top: 5px;
-    i{
-
+  span{
+    background: red;
+    height: 60px;
+    width: 60px;
+    padding-right: 5px;
+    .fa{
         font-size: 30px;
-        padding-right: 15px;
-        color: @brand-primary;
+        color: @brand-info;
     }
-    i:hover
-    {
-        -webkit-transition: color .25s ease);
-           -moz-transition: color .25s ease);
-            -ms-transition: color .25s ease);
-             -o-transition: color .25s ease);
-                transition: color .25s ease);
-        color: @brand-warning;
-    }
+  .fa:hover
+  {
+    color:@brand-warning;
+  }
+  }
 }
 .navbar-toggle
 {
@@ -533,4 +542,25 @@ button.navbar-toggle{
 .delete:hover
 {
     background-color:@brand-warning;
+}
+
+#Dashboard-List
+{
+    list-style: none;
+    padding: 0px 0px 0px 0px;
+    li{
+        a{
+            padding: 0px 0px 0px 30px;
+        }
+    }
+    li:hover{
+        background: @brand-dark-accent;
+    }
+
+}
+
+
+a:hover{
+    color:@brand-info;
+    text-decoration: none;
 }
