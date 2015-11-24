@@ -33,6 +33,21 @@ $(document).ready(function() {
 	$('#model_SiteTable').on('mouseenter',"tr",function(event) {
 		
 	});
+	
+		$('tr').hover(function() {
+		$(this).children("td:last-child").children('.delete').css({ 'color': 'red'});
+	}, function() {
+		$(this).children("td:last-child").children('.delete').css({ 'color': 'white'});
+	});
+
+
+
+	$('tr td .delete').click(function() {
+	dirty = true;
+	
+		$(this).parent('').parent('').remove();
+	});
+
 
 		$('a').click(function(event) {
 		var href = $(this).attr('href');
@@ -74,7 +89,7 @@ function Loadsites () {
 	for (var i =0 ; i < file.sites.length ; i++) {
 		console.log(file.sites[i].URL)
 		var preview =file.sites[i].URL.replace(/\[symbol\]/g, example_stock_symbol).replace(/\[name\]/g, example_stock_name);
-		$('#model_SiteTable').append('<tr class="model_SiteTable_Cell_dormant"><td class="model_SiteTable_URL">'+file.sites[i].URL+'</td><td>'+preview+'</td></tr>')
+		$('#model_SiteTable').append('<tr class="model_SiteTable_Cell_dormant"><td class="model_SiteTable_URL">'+file.sites[i].URL+'</td><td>'+preview+'</td><td class="COMMAND"><i id="'+i+'" class="delete fa fa-close"></i></td></tr>')
 	};
 }
 

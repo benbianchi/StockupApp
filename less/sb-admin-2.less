@@ -450,11 +450,6 @@ table.dataTable thead .sorting:after {
     border-color: @brand-primary;
 }
 
-#side-menu li a:hover{
-    background-color:@brand-dark-accent;
-    color:white;
-}
-
 
 a
 {
@@ -554,8 +549,13 @@ button.navbar-toggle{
         }
     }
     li:hover{
-        background: @brand-dark-accent;
+        background: white !important;
+        color: black !important;
     }
+    li.active{
+        background: black;
+    }
+
 
 }
 
@@ -564,3 +564,29 @@ a:hover{
     color:@brand-info;
     text-decoration: none;
 }
+
+
+#Dashboard-List li.active a
+{
+    text-decoration: underline;
+}
+
+#Populate_StockList li
+{
+    cursor: pointer;
+}
+
+#Populate_StockList li.active a
+{
+    color: @brand-info;
+    background: black !important;
+
+}
+
+#Populate_StockList li a
+{
+    color: @brand-info;
+    background-color: white !important;
+
+}
+

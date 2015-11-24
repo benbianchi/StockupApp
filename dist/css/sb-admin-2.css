@@ -85,11 +85,11 @@ body {
   padding: 15px;
 }
 .sidebar ul li a.active {
-  background-color: #50ca42;
+  background-color: #50ca42 !important;
   color: #3b3d3a;
 }
 .sidebar ul li a.active {
-  background: #50ca42;
+  background: #50ca42 !important;
 }
 .sidebar .arrow {
   float: right;
@@ -129,19 +129,19 @@ body {
   transition: all .5s;
 }
 .btn-primary.btn-outline {
-  color: #50ca42;
+  color: #50ca42 !important;
 }
 .btn-success.btn-outline {
-  color: #00ff00;
+  color: #00ff00 !important;
 }
 .btn-info.btn-outline {
-  color: #91de5b;
+  color: #91de5b !important;
 }
 .btn-warning.btn-outline {
-  color: #f0ad4e;
+  color: #f0ad4e !important;
 }
 .btn-danger.btn-outline {
-  color: #d9534f;
+  color: #d9534f !important;
 }
 .btn-primary.btn-outline:hover,
 .btn-success.btn-outline:hover,
@@ -158,7 +158,7 @@ body {
 .chat li {
   margin-bottom: 10px;
   padding-bottom: 5px;
-  border-bottom: 1px dotted #999999;
+  border-bottom: 1px dotted #999999 !important;
 }
 .chat li.left .chat-body {
   margin-left: 60px;
@@ -249,53 +249,53 @@ table.dataTable thead .sorting:after {
   font-size: 40px;
 }
 .panel-green {
-  border-color: #00ff00;
+  border-color: #00ff00 !important;
 }
 .panel-green .panel-heading {
-  border-color: #00ff00;
+  border-color: #00ff00 !important;
   color: white;
-  background-color: #00ff00;
+  background-color: #00ff00 !important;
 }
 .panel-green a {
-  color: #00ff00;
+  color: #00ff00 !important;
 }
 .panel-green a:hover {
-  color: #00b300;
+  color: #00b300 !important;
 }
 .panel-red {
-  border-color: #d9534f;
+  border-color: #d9534f !important;
 }
 .panel-red .panel-heading {
-  border-color: #d9534f;
+  border-color: #d9534f !important;
   color: white;
-  background-color: #d9534f;
+  background-color: #d9534f !important;
 }
 .panel-red a {
-  color: #d9534f;
+  color: #d9534f !important;
 }
 .panel-red a:hover {
-  color: #b52b27;
+  color: #b52b27 !important;
 }
 .panel-yellow {
-  border-color: #f0ad4e;
+  border-color: #f0ad4e !important;
 }
 .panel-yellow .panel-heading {
-  border-color: #f0ad4e;
+  border-color: #f0ad4e !important;
   color: white;
-  background-color: #f0ad4e;
+  background-color: #f0ad4e !important;
 }
 .panel-yellow a {
-  color: #f0ad4e;
+  color: #f0ad4e !important;
 }
 .panel-yellow a:hover {
-  color: #df8a13;
+  color: #df8a13 !important;
 }
 #model_SiteTable > tbody > tr > input[type="text"] {
   padding-top: 10px;
   width: 100%;
 }
 #command_AddSite:hover {
-  color: #50ca42;
+  color: #50ca42 !important;
 }
 /* latin-ext */
 @font-face {
@@ -324,7 +324,7 @@ table.dataTable thead .sorting:after {
 #ProductTitle a {
   font-family: 'Lily Script One', cursive;
   font-size: 30px;
-  color: #50ca42;
+  color: #50ca42 !important;
 }
 .navbar-default {
   background-color: #3b3d3a;
@@ -332,20 +332,16 @@ table.dataTable thead .sorting:after {
 }
 #side-menu li div input.form-control {
   background: #636661;
-  border-color: #50ca42;
-  color: #50ca42;
+  border-color: #50ca42 !important;
+  color: #50ca42 !important;
 }
 #side-menu li div span button.btn.btn-default {
   background: #3b3d3a;
-  color: #50ca42;
-  border-color: #50ca42;
-}
-#side-menu li a:hover {
-  background-color: #636661;
-  color: white;
+  color: #50ca42 !important;
+  border-color: #50ca42 !important;
 }
 a {
-  color: #91de5b;
+  color: #91de5b !important;
 }
 .MH-iframe {
   height: 100%;
@@ -356,7 +352,7 @@ a {
   display: none;
 }
 .command-panel {
-  color: #91de5b;
+  color: #91de5b !important;
 }
 #iframe-wrapper {
   height: 100%;
@@ -376,10 +372,10 @@ a {
 }
 .window-controls span .fa {
   font-size: 30px;
-  color: #91de5b;
+  color: #91de5b !important;
 }
 .window-controls span .fa:hover {
-  color: #f0ad4e;
+  color: #f0ad4e !important;
 }
 .navbar-toggle {
   margin-top: 10px;
@@ -406,7 +402,7 @@ button.navbar-toggle {
   color: transparent;
 }
 .delete:hover {
-  background-color: #f0ad4e;
+  background-color: #f0ad4e !important;
 }
 #Dashboard-List {
   list-style: none;
@@ -416,9 +412,27 @@ button.navbar-toggle {
   padding: 0px 0px 0px 30px;
 }
 #Dashboard-List li:hover {
-  background: #636661;
+  background: white !important;
+  color: black !important;
+}
+#Dashboard-List li.active {
+  background: black;
 }
 a:hover {
-  color: #91de5b;
+  color: #91de5b !important;
   text-decoration: none;
+}
+#Dashboard-List li.active a {
+  text-decoration: underline;
+}
+#Populate_StockList li {
+  cursor: pointer;
+}
+#Populate_StockList li.active a {
+  color: #91de5b !important;
+  background: black !important;
+}
+#Populate_StockList li a {
+  color: #91de5b !important;
+  background-color: white !important;
 }

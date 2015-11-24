@@ -7,23 +7,15 @@ var appInfo;
 var ConfigPath = "AppInfo.json";
 var fs = require("fs");
 var activeIframeID = 0;
+var activeStockID = 0;
 
 $(document).ready(function() {
 
-
-		var nheight =$("#page-wrapper").height();
-		$(".panel-body#iframe-wrapper").height(nheight);
-
-
-		console.log(nheight);
-		console.log($("#page-wrapper"))
-
-	var iqueue = [];
 	
 	var appInfo =JSON.parse( fs.readFileSync(ConfigPath,"utf8") );
 	
 	loadStocks(appInfo);
-	loadIframes(appInfo.sites,0);
+	loadIframes(0,0);
 
 	//Resize the main page for maximum real estate. Fires on window resize.
 	$(window).resize(function(event) {
@@ -39,17 +31,42 @@ $(document).ready(function() {
 	});
 
 	//When a user clicks a new stock, populate the iframes correctly with new info.
-	$('#Dashboard-List li a').click(function(event) {
-		console.log($('#iframe-wrapper #stockframe-'+activeIframeID));		
-		$('#iframe-wrapper #stockframe-'+activeIframeID).toggleClass('MH-iframe-hidden');
-		console.log(activeIframeID+" vs "+ $(this).attr('index'));
+	$('#Dashboard-List li').click(function(event) {
+		
+		$('#Dashboard-List li.active').toggleClass('active');
+		$(this).toggleClass('active');
+
+console.log("iframe-wrapper #stockframe-"+activeIframeID);
+		$("#iframe-wrapper #stockframe-"+activeIframeID).toggleClass('MH-iframe-hidden');
 		activeIframeID = $(this).attr('index');
+		$("#iframe-wrapper #stockframe-"+activeIframeID).toggleClass('MH-iframe-hidden');
+
+		$('#iframe-wrapper #stockframe-'+activeIframeID).toggleClass('MH-iframe-hidden');
+
+		activeIframeID = $(this).attr('index');
+
 		$('#iframe-wrapper #stockframe-'+activeIframeID).toggleClass('MH-iframe-hidden');
 				var nheight =$("#page-wrapper").height();
 		$(".panel-body#iframe-wrapper").height(nheight);
 
+
+
 	});
 
+	$('#Populate_StockList li').click(function(event) {
+		
+		$('#Populate_StockList li.active').toggleClass('active');
+		$(this).toggleClass('active');
+
+		
+
+		loadIframes(activeIframeID,$(this).attr('index'));
+
+	});;
+
+console.log($('#Populate_StockList li.active p').html());
+	$('#current_stock').html($('#Populate_StockList li.active').html())
+	$('#current_stock').append('<span class="caret"></span></a>')
 
 });
 
@@ -64,35 +81,60 @@ function loadStocks (appInfo) {
 		appInfo =JSON.parse ( fs.readFileSync(ConfigPath,"utf8") );
 	for (var i = 0; i < appInfo.saved_stocks.length; i++) {
 		if (i == appInfo.activeStockIndex)
-			$('#Dashboard-List').append('<li class="active"><a index="'+i+'" symbol="'+appInfo.saved_stocks[i].symbol+'" name="'+appInfo.saved_stocks[i].name+'"  href="#">'+appInfo.saved_stocks[i].name+'</a></li>');
+			{
+			$('#Dashboard-List').append('<li index="'+i+'" class="active"><a >'+appInfo["sites"][i]["URL"].split('/')[2]+'</a>')
+			$('#Populate_StockList').append('<li index="'+i+'" class="active"><a  symbol="'+appInfo.saved_stocks[i].symbol+'" name="'+appInfo.saved_stocks[i].name+'"  >'+appInfo.saved_stocks[i].name+'</a></li>');
+		}
 		else
-			$('#Dashboard-List').append('<li><a index="'+i+'" symbol="'+appInfo.saved_stocks[i].symbol+'" name="'+appInfo.saved_stocks[i].name+'"  href="#">'+appInfo.saved_stocks[i].name+'</a></li>');
+		{
+			$('#Populate_StockList').append('<li index="'+i+'" ><a symbol="'+appInfo.saved_stocks[i].symbol+'" name="'+appInfo.saved_stocks[i].name+'"  >'+appInfo.saved_stocks[i].name+'</a></li>');
+			$('#Dashboard-List').append('<li class="" index="'+i+'"><a>'+appInfo["sites"][i]["URL"].split('/')[2]+'</a>')
+		}
 	};
 
 }
-function loadIframes (q, defaultindex) {
-	var min = defaultindex;
-	var max = defaultindex;
-
+function loadIframes (IframeIndex, StockIndex) {
+	
+	activeIframeID = IframeIndex;
+	activeStockID = StockIndex;
 	if (appInfo == undefined)	
 		appInfo =JSON.parse( fs.readFileSync(ConfigPath,"utf8") );
 	
 
-	console.log(JSON.stringify(appInfo));
-	for (var i = 0; i < q.length; i++) {
+	for (var i = 0; i < appInfo["sites"].length -1; i++) {
+
+		if ($('#iframe-wrapper').children('')[i] )
+		{
+			$('#iframe-wrapper').children('').remove();
+		}
+
 
 		//Process URLS and inject stock names.
+		console.log(IframeIndex);
 		
-		var source = appInfo["sites"][i]["URL"].replace("[symbol]",appInfo["saved_stocks"][i]["symbol"]).replace("[name]",appInfo["saved_stocks"][i]["name"]);
+		var source = appInfo["sites"][i]["URL"].replace("[symbol]",appInfo["saved_stocks"][StockIndex]["symbol"]).replace("[name]",appInfo["saved_stocks"][StockIndex]["name"]);
 
-		if (i == defaultindex)
+		if (i == IframeIndex)
+		{
 			$('#iframe-wrapper').append('<iframe id="stockframe-'+i+'" src="'+source+'" class="col-xs-12 MH-iframe"></iframe>');
+		}
 		else
+		{
 			$('#iframe-wrapper').append('<iframe id="stockframe-'+i+'" src="'+source+'" class="col-xs-12 MH-iframe MH-iframe-hidden"></iframe>');
-		console.log(source);
-		$('.MH-iframe #stockframe-'+i).load(function() {
-			console.log("loaded");
-		});
+		}
+
+
+		var nheight =$("#page-wrapper").height();
+		$(".panel-body#iframe-wrapper").height(nheight);
+
+		$('#current_stock').text($('#Populate_StockList li.active a').text())
+		$('#current_stock').append('<span class="caret"></span></a>')
 	};
 
 };
+
+
+
+function getSourceAfterProcessing (index ) {
+	// body...
+}

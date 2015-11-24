@@ -7,7 +7,7 @@
   "window": {
     "title": "Market Hound",
     "icon": "link.png",
-    "toolbar": true,
+    "toolbar": false,
     "frame": true,
     "position": "mouse"
   },
