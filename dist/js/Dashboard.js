@@ -60,7 +60,7 @@ console.log("iframe-wrapper #stockframe-"+activeIframeID);
 
 		
 
-		loadIframes(activeIframeID,$(this).attr('index'));
+		loadIframes(activeIframeID,$(this).attr('index'), true);
 
 	});;
 
@@ -82,54 +82,67 @@ function loadStocks (appInfo) {
 	for (var i = 0; i < appInfo.saved_stocks.length; i++) {
 		if (i == appInfo.activeStockIndex)
 			{
-			$('#Dashboard-List').append('<li index="'+i+'" class="active"><a >'+appInfo["sites"][i]["URL"].split('/')[2]+'</a>')
+			
 			$('#Populate_StockList').append('<li index="'+i+'" class="active"><a  symbol="'+appInfo.saved_stocks[i].symbol+'" name="'+appInfo.saved_stocks[i].name+'"  >'+appInfo.saved_stocks[i].name+'</a></li>');
 		}
 		else
 		{
 			$('#Populate_StockList').append('<li index="'+i+'" ><a symbol="'+appInfo.saved_stocks[i].symbol+'" name="'+appInfo.saved_stocks[i].name+'"  >'+appInfo.saved_stocks[i].name+'</a></li>');
-			$('#Dashboard-List').append('<li class="" index="'+i+'"><a>'+appInfo["sites"][i]["URL"].split('/')[2]+'</a>')
+			
 		}
 	};
 
 }
-function loadIframes (IframeIndex, StockIndex) {
+function loadIframes (IframeIndex, StockIndex,bReloaded) {
 	
 	activeIframeID = IframeIndex;
 	activeStockID = StockIndex;
-	if (appInfo == undefined)	
-		appInfo =JSON.parse( fs.readFileSync(ConfigPath,"utf8") );
+	if (!appInfo)	
+		appInfo =JSON.parse ( fs.readFileSync(ConfigPath,"utf8") );
 	
+	for (var i = 0; i < appInfo.sites.length; i++) {
 
-	for (var i = 0; i < appInfo["sites"].length -1; i++) {
 
-		if ($('#iframe-wrapper').children('')[i] )
+
+		if (!bReloaded)
 		{
-			$('#iframe-wrapper').children('').remove();
+			if (i == IframeIndex)
+				$('#Dashboard-List').append('<li index="'+i+'" class="active"><a >'+appInfo["sites"][i]["URL"].split('/')[2]+'</a>')
+			else
+				$('#Dashboard-List').append('<li index="'+i+'"><a>'+appInfo["sites"][i]["URL"].split('/')[2]+'</a>')
 		}
 
 
-		//Process URLS and inject stock names.
-		console.log(IframeIndex);
-		
 		var source = appInfo["sites"][i]["URL"].replace("[symbol]",appInfo["saved_stocks"][StockIndex]["symbol"]).replace("[name]",appInfo["saved_stocks"][StockIndex]["name"]);
 
 		if (i == IframeIndex)
 		{
-			$('#iframe-wrapper').append('<iframe id="stockframe-'+i+'" src="'+source+'" class="col-xs-12 MH-iframe"></iframe>');
+			if ($('#iframe-wrapper').children('')[i])
+			{
+				$('#iframe-wrapper iframe#stockframe-'+i).attr('src', source);
+				$('#iframe-wrapper iframe#stockframe-'+i).attr('class', "MH-iframe");
+			}
+			else
+				$('#iframe-wrapper').append('<iframe id="stockframe-'+i+'" src="'+source+'" class="col-xs-12 MH-iframe"></iframe>');
 		}
 		else
 		{
-			$('#iframe-wrapper').append('<iframe id="stockframe-'+i+'" src="'+source+'" class="col-xs-12 MH-iframe MH-iframe-hidden"></iframe>');
+			if ($('#iframe-wrapper').children('')[i])
+			{
+				$('#iframe-wrapper iframe#stockframe-'+i).attr('src', source);
+				$('#iframe-wrapper iframe#stockframe-'+i).attr('class', "MH-iframe MH-iframe-hidden");
+			}
+			else
+				$('#iframe-wrapper').append('<iframe id="stockframe-'+i+'" src="'+source+'" class="col-xs-12 MH-iframe MH-iframe-hidden"></iframe>');
 		}
 
 
 		var nheight =$("#page-wrapper").height();
 		$(".panel-body#iframe-wrapper").height(nheight);
 
+	};
 		$('#current_stock').text($('#Populate_StockList li.active a').text())
 		$('#current_stock').append('<span class="caret"></span></a>')
-	};
 
 };
 
