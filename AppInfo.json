@@ -1,1 +1,7 @@
-{"anonymous_statistics":false,"activeSiteIndex":0,"activeStockIndex":0,"saved_stocks":[{"name":"Apple Inc","symbol":"aapl"},{"name":"Mosys","symbol":"mosy"},{"name":"Go Pro","symbol":"gpro"}],"sites":[{"URL":"http://money.cnn.com/quote/quote.html?symb=[symbol]"},{"URL":"http://www.reuters.com/finance/stocks/overview?symbol=[symbol]"},{"URL":"http://data.cnbc.com/quotes/[symbol]"}]}
+{
+    "anonymous_statistics": false,
+    "activeSiteIndex": 0,
+    "activeStockIndex": 0,
+    "saved_stocks": [],
+    "sites": []
+}
