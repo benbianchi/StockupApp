@@ -3,16 +3,18 @@ var unsaved_changes_title = "Unsaved Changes";
 var unsaved_changes_message = "You have editted your site list. Would you like to save your changes?";
 var sites = [];
 var fs = require('fs');
-var example_stock_name = "BenBianchiTechnologi"
-var example_stock_symbol = "BBTI"
-var dirty = false;
+var example_stock_name = "Apple Inc."
+var example_stock_symbol = "AAPL"
+
+
 $(document).ready(function() {
 	
 	Loadsites();
-
+	dirty = false;
+	
 	$('#command_AddSite').click(function(event) {
 		dirty = true;
-		$('#model_SiteTable').append('<tr class="model_SiteTable_Cell_dormant"><td class="model_SiteTable_URL">Unconfigured</td><td>Example</td></tr>');
+		$('#model_SiteTable').append('<tr class="model_SiteTable_Cell_dormant"><td class="model_SiteTable_URL">Unconfigured</td><td>Unconfigured</td><td class="COMMAND"><i id="'+($('tr').length -1)+'" class="delete fa fa-close"></i></td></tr>')
 	});
 
 
@@ -30,19 +32,17 @@ $(document).ready(function() {
 		$(this).children('').first().replaceWith('<td class="model_SiteTable_URL">'+$(this).children('').first().val()+"</td>");
 	});
 
-	$('#model_SiteTable').on('mouseenter',"tr",function(event) {
-		
-	});
-	
-		$('tr').hover(function() {
+	$('#model_SiteTable').on('mouseenter', 'tr.model_SiteTable_Cell_dormant', function() {
 		$(this).children("td:last-child").children('.delete').css({ 'color': 'red'});
-	}, function() {
+	});
+
+	$('#model_SiteTable').on('mouseleave', 'tr.model_SiteTable_Cell_dormant', function() {
 		$(this).children("td:last-child").children('.delete').css({ 'color': 'white'});
 	});
 
 
 
-	$('tr td .delete').click(function() {
+	$('#model_SiteTable').on('click','tr td .delete', function() {
 	dirty = true;
 	
 		$(this).parent('').parent('').remove();

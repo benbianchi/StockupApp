@@ -8,14 +8,18 @@
 }
 body {
   background-color: #3b3d3a;
+  overflow-y: hidden;
 }
 #wrapper {
   width: 100%;
+  max-height: 938px;
+  overflow-y: visible;
 }
 #page-wrapper {
   padding: 0 15px;
   min-height: 568px;
   background-color: white;
+
 }
 @media (min-width: 768px) {
   #page-wrapper {
@@ -23,6 +27,7 @@ body {
     margin: 0 0 0 250px;
     padding: 0 30px;
     border-left: 1px solid #636661;
+    
   }
 }
 .navbar-top-links {
@@ -85,11 +90,11 @@ body {
   padding: 15px;
 }
 .sidebar ul li a.active {
-  background-color: #50ca42 !important;
+  background-color: #50ca42;
   color: #3b3d3a;
 }
 .sidebar ul li a.active {
-  background: #50ca42 !important;
+  background: #50ca42;
 }
 .sidebar .arrow {
   float: right;
@@ -129,19 +134,19 @@ body {
   transition: all .5s;
 }
 .btn-primary.btn-outline {
-  color: #50ca42 !important;
+  color: #50ca42;
 }
 .btn-success.btn-outline {
-  color: #00ff00 !important;
+  color: #00ff00;
 }
 .btn-info.btn-outline {
-  color: #91de5b !important;
+  color: #91de5b;
 }
 .btn-warning.btn-outline {
-  color: #f0ad4e !important;
+  color: #f0ad4e;
 }
 .btn-danger.btn-outline {
-  color: #d9534f !important;
+  color: #d9534f;
 }
 .btn-primary.btn-outline:hover,
 .btn-success.btn-outline:hover,
@@ -158,7 +163,7 @@ body {
 .chat li {
   margin-bottom: 10px;
   padding-bottom: 5px;
-  border-bottom: 1px dotted #999999 !important;
+  border-bottom: 1px dotted #999999;
 }
 .chat li.left .chat-body {
   margin-left: 60px;
@@ -249,53 +254,53 @@ table.dataTable thead .sorting:after {
   font-size: 40px;
 }
 .panel-green {
-  border-color: #00ff00 !important;
+  border-color: #00ff00;
 }
 .panel-green .panel-heading {
-  border-color: #00ff00 !important;
+  border-color: #00ff00;
   color: white;
-  background-color: #00ff00 !important;
+  background-color: #00ff00;
 }
 .panel-green a {
-  color: #00ff00 !important;
+  color: #00ff00;
 }
 .panel-green a:hover {
-  color: #00b300 !important;
+  color: #00b300;
 }
 .panel-red {
-  border-color: #d9534f !important;
+  border-color: #d9534f;
 }
 .panel-red .panel-heading {
-  border-color: #d9534f !important;
+  border-color: #d9534f;
   color: white;
-  background-color: #d9534f !important;
+  background-color: #d9534f;
 }
 .panel-red a {
-  color: #d9534f !important;
+  color: #d9534f;
 }
 .panel-red a:hover {
-  color: #b52b27 !important;
+  color: #b52b27;
 }
 .panel-yellow {
-  border-color: #f0ad4e !important;
+  border-color: #f0ad4e;
 }
 .panel-yellow .panel-heading {
-  border-color: #f0ad4e !important;
+  border-color: #f0ad4e;
   color: white;
-  background-color: #f0ad4e !important;
+  background-color: #f0ad4e;
 }
 .panel-yellow a {
-  color: #f0ad4e !important;
+  color: #f0ad4e;
 }
 .panel-yellow a:hover {
-  color: #df8a13 !important;
+  color: #df8a13;
 }
 #model_SiteTable > tbody > tr > input[type="text"] {
   padding-top: 10px;
   width: 100%;
 }
 #command_AddSite:hover {
-  color: #50ca42 !important;
+  color: #50ca42;
 }
 /* latin-ext */
 @font-face {
@@ -324,7 +329,7 @@ table.dataTable thead .sorting:after {
 #ProductTitle a {
   font-family: 'Lily Script One', cursive;
   font-size: 30px;
-  color: #50ca42 !important;
+  color: #50ca42;
 }
 .navbar-default {
   background-color: #3b3d3a;
@@ -332,16 +337,16 @@ table.dataTable thead .sorting:after {
 }
 #side-menu li div input.form-control {
   background: #636661;
-  border-color: #50ca42 !important;
-  color: #50ca42 !important;
+  border-color: #50ca42;
+  color: #50ca42;
 }
 #side-menu li div span button.btn.btn-default {
   background: #3b3d3a;
-  color: #50ca42 !important;
-  border-color: #50ca42 !important;
+  color: #50ca42;
+  border-color: #50ca42;
 }
 a {
-  color: #91de5b !important;
+  color: #91de5b;
 }
 .MH-iframe {
   width: 100%;
@@ -353,7 +358,7 @@ a {
   display: none;
 }
 .command-panel {
-  color: #91de5b !important;
+  color: #91de5b;
 }
 #iframe-wrapper {
   height: 100%;
@@ -373,10 +378,10 @@ a {
 }
 .window-controls span .fa {
   font-size: 30px;
-  color: #91de5b !important;
+  color: #91de5b;
 }
 .window-controls span .fa:hover {
-  color: #f0ad4e !important;
+  color: #f0ad4e;
 }
 .navbar-toggle {
   margin-top: 10px;
@@ -403,7 +408,7 @@ button.navbar-toggle {
   color: transparent;
 }
 .delete:hover {
-  background-color: #f0ad4e !important;
+  background-color: #f0ad4e;
 }
 #Dashboard-List {
   list-style: none;
@@ -420,7 +425,7 @@ button.navbar-toggle {
   background: black;
 }
 a:hover {
-  color: #91de5b !important;
+  color: #91de5b;
   text-decoration: none;
 }
 #Dashboard-List li.active a {
@@ -430,11 +435,11 @@ a:hover {
   cursor: pointer;
 }
 #Populate_StockList li.active a {
-  color: #00ff00 !important;
+  color: #00ff00;
   background: white !important;
 }
 #Populate_StockList li a {
-  color: #91de5b !important;
+  color: #91de5b;
   background-color: #636661 !important;
 }
 #Populate_StockList {
@@ -445,7 +450,7 @@ a:hover {
 }
 #Quick_Stock_Change {
   margin-left: 70px;
-  background-color: #91de5b !important;
+  background-color: #91de5b;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }

@@ -17,6 +17,79 @@ $(document).ready(function() {
 	loadStocks(appInfo);
 	loadIframes(0,0);
 
+	$('#Search_Emblem').click(function(event) {
+		bReloaded=true;
+		IframeIndex=activeIframeID;
+		console.log("Running");
+		var name =	$("#name-search-input").val();
+		var symbol=	$("#symbol-search-input").val();
+
+	if (!appInfo)	
+		appInfo =JSON.parse ( fs.readFileSync(ConfigPath,"utf8") );
+
+		var jsob = {};
+		jsob.name= name;
+		jsob.symbol=symbol;
+
+	if (JSON.stringify(appInfo.saved_stocks).indexOf(symbol) == -1)
+	{
+		appInfo["saved_stocks"].push(jsob);
+		fs.writeFileSync(ConfigPath,JSON.stringify(appInfo));
+	}
+
+	
+	for (var i = 0; i < appInfo.sites.length; i++) {
+
+
+
+		if (!bReloaded)
+		{
+			if (i == IframeIndex)
+				$('#Dashboard-List').append('<li index="'+i+'" class="active"><a >'+appInfo["sites"][i]["URL"].split('/')[2]+'</a>')
+			else
+				$('#Dashboard-List').append('<li index="'+i+'"><a>'+appInfo["sites"][i]["URL"].split('/')[2]+'</a>')
+		}
+
+
+		var source = appInfo["sites"][i]["URL"].replace("[symbol]",symbol).replace("[name]",name);
+		console.log(source);
+
+		if (i == IframeIndex)
+		{
+			if ($('#iframe-wrapper').children('')[i])
+			{
+				$('#iframe-wrapper iframe#stockframe-'+i).attr('src', source);
+				$('#iframe-wrapper iframe#stockframe-'+i).attr('class', "MH-iframe");
+			}
+			else
+				$('#iframe-wrapper').append('<iframe id="stockframe-'+i+'" src="'+source+'" class="col-xs-12 MH-iframe"></iframe>');
+		}
+		else
+		{
+			if ($('#iframe-wrapper').children('')[i])
+			{
+				$('#iframe-wrapper iframe#stockframe-'+i).attr('src', source);
+				$('#iframe-wrapper iframe#stockframe-'+i).attr('class', "MH-iframe MH-iframe-hidden");
+			}
+			else
+				$('#iframe-wrapper').append('<iframe id="stockframe-'+i+'" src="'+source+'" class="col-xs-12 MH-iframe MH-iframe-hidden"></iframe>');
+		}
+
+
+		var nheight =$("#page-wrapper").height();
+		$(".panel-body#iframe-wrapper").height(nheight);
+
+	};
+		$('#current_stock').text($('#Populate_StockList li.active a').text())
+		$('#current_stock').append('<span class="caret"></span></a>')
+
+
+
+
+		
+
+	});
+
 	//Resize the main page for maximum real estate. Fires on window resize.
 	$(window).resize(function(event) {
 		var nheight =$("#page-wrapper").height();

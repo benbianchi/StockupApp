@@ -1,6 +1,4 @@
 var ConfigPath = "AppInfo.json";
-var dirty = false;
-var file  = undefined;
 var stocks = [];
 fs = require('fs');
 
@@ -10,7 +8,7 @@ $(document).ready(function() {
 
 
 
-
+	dirty = false;
 
 
 	LoadStocks();
@@ -18,7 +16,7 @@ $(document).ready(function() {
 	$('#command_AddSite').click(function(event) {
 		dirty = true;
 		stocks.push( JSON.parse('{"name":"Unconfigured","symbol":"None"}') );
-		$('#model_StockTable').append('<tr class="model_StockTable_Entry"><td class="model_StockTable_Name">Unconfigured</td><td class="model_StockTable_Symbol">Example</td></tr>')
+		$('#model_StockTable').append('<tr class="model_StockTable_Entry"><td class="model_StockTable_Name">Unconfigured</td><td class="model_StockTable_Symbol">Example</td><td class="COMMAND"><i id="'+($('tr').length -1)+'" class="delete fa fa-close"></i></td></tr>')
 	});
 
 
@@ -46,13 +44,18 @@ $(document).ready(function() {
 			/* Act on the event */
 		});
 	});
-	$('tr').hover(function() {
+
+
+$('#model_StockTable').on('mouseenter', 'tr', function() {
 		$(this).children("td:last-child").children('.delete').css({ 'color': 'red'});
-	}, function() {
+	});
+
+	$('#model_StockTable').on('mouseleave', 'tr', function() {
 		$(this).children("td:last-child").children('.delete').css({ 'color': 'white'});
 	});
 
-$('tr td .delete').click(function() {
+
+$('#model_StockTable').on('click','tr td .delete', function() {
 	dirty = true;
 	
 		$(this).parent('').parent('').remove();
