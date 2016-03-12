@@ -56,44 +56,57 @@
 				
 				if (path.extname(dest) == ".mhUrls")
 				{
-					$.each(sel,function(index, el) {
-						var i = checkDuplicates(config.sites,el);
-						if (i > -1)
-							MHAlert ("Duplicate Found",
-								capitalizeFirstLetter(el.url)+" is a URL already saved within the app. Press Continue to overwrite.",
-								"Overwrite",
-								"Skip",
-								function() { config.sites[i] = el},
-								function() {});
+					for (var x = 0; x < sel.length; x++) {
+						var el = sel[x];
+						var i = config.sites.indexOf(el);
+						if (i > -1){
+							continue;							
+						}
+
 						else
+						{
 							config.sites.push(el)
-					});
-					bindTableData("#table-export-urls",getConfiguration().sites);
+							bindTableData("#table-export-stocks",getConfiguration().sites);
+						}
+					};
+					setConfiguration(config);
+					config = getConfiguration();
 				}
 				if (path.extname(dest) == ".mhStocks"  )
 				{
-					console.log("Dealing with Stocks here");
-					$.each(sel,function(index, el) {
+
+					for (var x = 0; x < sel.length; x++) {
+						var el = sel[x];
 						var i = checkDuplicates(config.saved_stocks,el);
-						if (i > -1)
+						if (i > -1){
+
 							MHAlert ("Duplicate Found",
-								el.name+" is a stock already saved within the app. Press Continue to overwrite.",
+								capitalizeFirstLetter(el.name)+" is a Stock already saved within the app. Press Continue to overwrite.",
 								"Overwrite",
 								"Skip",
-								function() { config.saved_stocks[i] = el},
+								function() {
+								 config.saved_stocks[i] = el
+								 setConfiguration(config);
+								 bindTableData("#table-export-stocks",getConfiguration().saved_stocks);
+								 
+								},
 								function() {});
+							
+						}
+
 						else
+						{
 							config.saved_stocks.push(el)
-					});
-					bindTableData("#table-export-stocks",getConfiguration().saved_stocks);
+							bindTableData("#table-export-stocks",getConfiguration().saved_stocks);
+						}
+					};
+					setConfiguration(config);
+					config = getConfiguration();
+			
 				}
-				dirty = true;
 
-				console.log(sel);
+				console.log("hello from the end");
 
-
-
-				setConfiguration(config);
 			});
 
 			

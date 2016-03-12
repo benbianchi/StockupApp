@@ -52,6 +52,7 @@ function getConfiguration () {
         var fs = require('fs');
         dirty = false;
         file = JSON.parse( fs.readFileSync("AppInfo.json",'utf8') );
+        console.log("Fetched File.");
         return file
       } 
     else
@@ -63,16 +64,14 @@ function getConfiguration () {
 
 function setConfiguration (conf) {
   //What we are going to do here is have  function that loads the AppInfo file, and returns it if it hasnt been changed.
-  if ( dirty == true)
-      {
+
         var fs = require('fs');
-        dirty = false;
+        dirty = true;
         fs.writeFileSync("AppInfo.json",JSON.stringify(conf) );
+        console.log("Wrote to File.");
+        console.log(conf);
         return true;
 
-      } 
-    else
-      return false
 }
 
 
@@ -102,24 +101,22 @@ function bindTableData(tablequerystring,data)
   thead.children('tr').append(checkboxMarkAll);
 
   for (var i = 0; i < Object.keys(data[0]).length; i++) {
-  console.log(" Key:"+Object.keys(data[0])[i]);
+  
   thead.children('tr').append('<th>'+capitalizeFirstLetter(Object.keys(data[0])[i])+'</th>' ) 
   };
   $(tablequerystring).append(thead);
 
-  console.log(table.html());
-   
   
 
 
   for (var i = 0; i < data.length; i++) {
-    console.log(data[i]);
+    // console.log(data[i]);
     var curRow = $("<tr data-index='"+i+"'></tr>");
 
     curRow.append ( $("<td><input class='rowCheckBox' type='checkbox'></td>"))
     for (var j = 0; j < Object.keys(data[0]).length; j++) {
       curRow.append($('<td>'+data[i][Object.keys(data[i])[j]]+'</td>') )
-      console.log(curRow.html());
+      // console.log(curRow.html());
     };
     table.children('tbody').append(curRow);
     
@@ -186,8 +183,10 @@ function capitalizeFirstLetter (s) {
 
 function checkDuplicates (source,obj) {
 
-  var key = Object.keys(source)[0];
+  var key = Object.keys(source[0])[0];
+
    for (var i = 0; i < source.length; i++) {
+    console.log(obj[key], source[i][key], i);
      if (obj[key] == source[i][key])
       return i;
    }
