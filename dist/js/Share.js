@@ -3,6 +3,7 @@
 
 		$(document).ready(function() {
 
+
 			$("#export-dummy").on('change', '', function(event) {
 				
 				var dest = $(this).val()
@@ -47,8 +48,11 @@
 				$('#approve-import-button').removeClass('disabled')
 			});
 
-
+			//On user clicks Approve Entries button
 			$("#approve-import-button").on('click', '', function(event) {
+
+				//Figure out if we are dealing with stocks or sites.
+				//Then scan for repeats and report them to the user.
 
 				var dest = $('#import-dummy').val()
 				var config = getConfiguration();
@@ -81,13 +85,13 @@
 						if (i > -1){
 
 							MHAlert ("Duplicate Found",
-								capitalizeFirstLetter(el.name)+" is a Stock already saved within the app. Press Continue to overwrite.",
+								capitalizeFirstLetter(el.name)+" is a Stock already saved within the app. Choose an option below.",
 								"Overwrite",
 								"Skip",
 								function() {
 								 config.saved_stocks[i] = el
 								 setConfiguration(config);
-								 bindTableData("#table-export-stocks",getConfiguration().saved_stocks);
+								 
 								 
 								},
 								function() {});
@@ -97,7 +101,7 @@
 						else
 						{
 							config.saved_stocks.push(el)
-							bindTableData("#table-export-stocks",getConfiguration().saved_stocks);
+							
 						}
 					};
 					setConfiguration(config);
@@ -105,7 +109,7 @@
 			
 				}
 
-				console.log("hello from the end");
+
 
 			});
 

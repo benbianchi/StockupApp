@@ -45,6 +45,10 @@ function MHAlertLittle (title,error_message,continue_callback) {
 
 }
 
+/**
+ * @getConfiguration()  get the contents of AppInfo.json, the file that houses settings, stocks, and sites. In an effort to save file processing, if you want an updated version, make sure to set 'dirty' to true.
+ * @return {Object}
+ */
 function getConfiguration () {
   //What we are going to do here is have  function that loads the AppInfo file, and returns it if it hasnt been changed.
   if (file == undefined || dirty == true)
@@ -61,6 +65,11 @@ function getConfiguration () {
       return file;
     }
 }
+
+/**
+ * @method setConfiguration
+ * @param {Object} conf The Configuration you want to save to AppInfo.json
+ */
 
 function setConfiguration (conf) {
   //What we are going to do here is have  function that loads the AppInfo file, and returns it if it hasnt been changed.
@@ -87,12 +96,12 @@ function bindTableData(tablequerystring,data)
     console.log("Empty Data");
     return false;
   }
-  $(tablequerystring).children().remove();
+  $(tablequerystring).children().remove();   //Clean the table.
   table = $(tablequerystring)
-  console.log("Binding Table Data");
-  var thead = $("<thead>") 
-  table.append($("<tbody>"))
-  table.append(thead);
+
+  var thead = $("<thead>") //Use jquery to create a thead element, we will add to this element later.
+  table.append($("<tbody>"))//Use jquery to create a table's body element.
+  table.append(thead); // Attach thead to the table we are binding data to.
 
   thead.append( $("<tr></tr>") );
   var checkboxMarkAll = $("<th><input class='mark-all-checkbox' type='checkbox'> Mark All</th>")
@@ -100,7 +109,7 @@ function bindTableData(tablequerystring,data)
 
   thead.children('tr').append(checkboxMarkAll);
 
-  for (var i = 0; i < Object.keys(data[0]).length; i++) {
+  for (var i = 0; i < Object.keys(data[0]).length; i++) { //Attach all object's keys as th tags. This makes the columns look nice. In addition, we want to have the first column header be a control box that allows users to quickly add all entries to export/import lists.
   
   thead.children('tr').append('<th>'+capitalizeFirstLetter(Object.keys(data[0])[i])+'</th>' ) 
   };
@@ -109,20 +118,21 @@ function bindTableData(tablequerystring,data)
   
 
 
-  for (var i = 0; i < data.length; i++) {
-    // console.log(data[i]);
+  for (var i = 0; i < data.length; i++) { //Populate each row with incrementing entries, and finally attach these rows to tbody
+    
     var curRow = $("<tr data-index='"+i+"'></tr>");
 
     curRow.append ( $("<td><input class='rowCheckBox' type='checkbox'></td>"))
     for (var j = 0; j < Object.keys(data[0]).length; j++) {
       curRow.append($('<td>'+data[i][Object.keys(data[i])[j]]+'</td>') )
-      // console.log(curRow.html());
+    
     };
     table.children('tbody').append(curRow);
     
   };
 
-    checkboxMarkAll.children('input').bind('change', function(event) {
+    checkboxMarkAll.children('input').bind('change', function(event) {  //Set an event listener that will set all checkboxes to true or false, depending on the checkbox in the thead.
+
     if (!$(this).attr('checked') ) 
     {
       $('.rowCheckBox',tablequerystring+' tbody tr').each(function(index, el) {
@@ -148,6 +158,10 @@ function bindTableData(tablequerystring,data)
 
   
 }
+/**
+ * @method getSelectedFromTable Get all selected entries from the table.
+ * @param {String} tableqstring the query selector for the table you are searching.
+ */
 
   function getSelectedFromTable (tableqstring) {
     var output =[];
